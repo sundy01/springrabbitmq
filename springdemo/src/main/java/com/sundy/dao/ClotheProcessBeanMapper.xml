@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sundy.dao.ClotheProcessBeanMapper" >
+  <resultMap id="BaseResultMap" type="com.sundy.model.ClotheProcessBean" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="styleId" property="styleid" jdbcType="INTEGER" />
+    <result column="styleName" property="stylename" jdbcType="VARCHAR" />
+    <result column="processName" property="processname" jdbcType="VARCHAR" />
+    <result column="processPrice" property="processprice" jdbcType="DECIMAL" />
+    <result column="createDate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="updateDate" property="updatedate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, styleId, styleName, processName, processPrice, createDate, updateDate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from jk_clothe_process
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from jk_clothe_process
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sundy.model.ClotheProcessBean" >
+    insert into jk_clothe_process (id, styleId, styleName, 
+      processName, processPrice, createDate, 
+      updateDate)
+    values (#{id,jdbcType=INTEGER}, #{styleid,jdbcType=INTEGER}, #{stylename,jdbcType=VARCHAR}, 
+      #{processname,jdbcType=VARCHAR}, #{processprice,jdbcType=DECIMAL}, #{createdate,jdbcType=TIMESTAMP}, 
+      #{updatedate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sundy.model.ClotheProcessBean" >
+    insert into jk_clothe_process
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="styleid != null" >
+        styleId,
+      </if>
+      <if test="stylename != null" >
+        styleName,
+      </if>
+      <if test="processname != null" >
+        processName,
+      </if>
+      <if test="processprice != null" >
+        processPrice,
+      </if>
+      <if test="createdate != null" >
+        createDate,
+      </if>
+      <if test="updatedate != null" >
+        updateDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="styleid != null" >
+        #{styleid,jdbcType=INTEGER},
+      </if>
+      <if test="stylename != null" >
+        #{stylename,jdbcType=VARCHAR},
+      </if>
+      <if test="processname != null" >
+        #{processname,jdbcType=VARCHAR},
+      </if>
+      <if test="processprice != null" >
+        #{processprice,jdbcType=DECIMAL},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sundy.model.ClotheProcessBean" >
+    update jk_clothe_process
+    <set >
+      <if test="styleid != null" >
+        styleId = #{styleid,jdbcType=INTEGER},
+      </if>
+      <if test="stylename != null" >
+        styleName = #{stylename,jdbcType=VARCHAR},
+      </if>
+      <if test="processname != null" >
+        processName = #{processname,jdbcType=VARCHAR},
+      </if>
+      <if test="processprice != null" >
+        processPrice = #{processprice,jdbcType=DECIMAL},
+      </if>
+      <if test="createdate != null" >
+        createDate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedate != null" >
+        updateDate = #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sundy.model.ClotheProcessBean" >
+    update jk_clothe_process
+    set styleId = #{styleid,jdbcType=INTEGER},
+      styleName = #{stylename,jdbcType=VARCHAR},
+      processName = #{processname,jdbcType=VARCHAR},
+      processPrice = #{processprice,jdbcType=DECIMAL},
+      createDate = #{createdate,jdbcType=TIMESTAMP},
+      updateDate = #{updatedate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

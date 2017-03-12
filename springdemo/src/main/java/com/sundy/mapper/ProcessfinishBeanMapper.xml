@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sundy.dao.ProcessfinishBeanMapper" >
+  <resultMap id="BaseResultMap" type="com.sundy.model.ProcessfinishBean" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="processId" property="processid" jdbcType="INTEGER" />
+    <result column="employeeName" property="employeename" jdbcType="VARCHAR" />
+    <result column="employeeId" property="employeeid" jdbcType="INTEGER" />
+    <result column="finishNum" property="finishnum" jdbcType="INTEGER" />
+    <result column="createDate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="updateDate" property="updatedate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, processId, employeeName, employeeId, finishNum, createDate, updateDate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from jk_process_finish
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from jk_process_finish
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sundy.model.ProcessfinishBean" >
+    insert into jk_process_finish (id, processId, employeeName, 
+      employeeId, finishNum, createDate, 
+      updateDate)
+    values (#{id,jdbcType=INTEGER}, #{processid,jdbcType=INTEGER}, #{employeename,jdbcType=VARCHAR}, 
+      #{employeeid,jdbcType=INTEGER}, #{finishnum,jdbcType=INTEGER}, #{createdate,jdbcType=TIMESTAMP}, 
+      #{updatedate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sundy.model.ProcessfinishBean" >
+    insert into jk_process_finish
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="processid != null" >
+        processId,
+      </if>
+      <if test="employeename != null" >
+        employeeName,
+      </if>
+      <if test="employeeid != null" >
+        employeeId,
+      </if>
+      <if test="finishnum != null" >
+        finishNum,
+      </if>
+      <if test="createdate != null" >
+        createDate,
+      </if>
+      <if test="updatedate != null" >
+        updateDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="processid != null" >
+        #{processid,jdbcType=INTEGER},
+      </if>
+      <if test="employeename != null" >
+        #{employeename,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeid != null" >
+        #{employeeid,jdbcType=INTEGER},
+      </if>
+      <if test="finishnum != null" >
+        #{finishnum,jdbcType=INTEGER},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sundy.model.ProcessfinishBean" >
+    update jk_process_finish
+    <set >
+      <if test="processid != null" >
+        processId = #{processid,jdbcType=INTEGER},
+      </if>
+      <if test="employeename != null" >
+        employeeName = #{employeename,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeid != null" >
+        employeeId = #{employeeid,jdbcType=INTEGER},
+      </if>
+      <if test="finishnum != null" >
+        finishNum = #{finishnum,jdbcType=INTEGER},
+      </if>
+      <if test="createdate != null" >
+        createDate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedate != null" >
+        updateDate = #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sundy.model.ProcessfinishBean" >
+    update jk_process_finish
+    set processId = #{processid,jdbcType=INTEGER},
+      employeeName = #{employeename,jdbcType=VARCHAR},
+      employeeId = #{employeeid,jdbcType=INTEGER},
+      finishNum = #{finishnum,jdbcType=INTEGER},
+      createDate = #{createdate,jdbcType=TIMESTAMP},
+      updateDate = #{updatedate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
